@@ -1,0 +1,219 @@
+<html>
+<!-- 
+        Name: Diana Gale
+        Date: December 6 2020
+        Assignment: Assignment 8, program 1
+        Description: This program takes a series of integers from the user-- asking for a number, then asking if the user would like to enter one more. It
+        displays all the negative numbers and their sum to the screen, then displays all the positive numbers and their sum to the screen. 
+    -->
+
+<head>
+    <title> Series of Integers </title>
+    <script>
+
+        /* Algorithm
+        1. Get input and format into an array
+        2. Get the positive and negative integers from the input array
+        3. Find the total amount of positives and negatives from their respective arrays
+        4. Output the negative integers in a formatted way
+        5. Output the positive integers in a formatted way
+        */
+
+        /* Variable Index (purposes of all the variables)
+        var num = the parameter in isPositive that is compared to 0. 
+        var message = the parameter in the function print that is passed in to a document.write statement. 
+        var arrayOfInput = the array to which values are pushed in the function getArrayInput. it is returned from getArrayInput. later, it is used as an argument
+            in getPos and getNeg.
+        var keepGoing = the boolean that regulates the continuation of the do-while loop in the function getArrayInput. it recieves input from
+            a confirm pop-up window.
+        var array = the parameter in the functions getPos, getNegs, getTotal, and formattedArrayOutput. it signifies an array that is passed into the function
+            to be processed by the purpose of the function. 
+        var pos = the array of positive integers that were separated from the array arrayOfInput (the original input). used in getPos, and later as an argument
+            in getTotal. it is also passed into formattedArrayOutput to be printed to the screen.  
+        var negs = the array of negative integers that were separated from the array arrayOfInput (the original input). used in getNegs, and later as an argument
+            in getTotal. it is also passed into formattedArrayOutput to be printed to the screen.  
+        var total = the integer that is the total sum of all the values in a passed-in array. used in getTotal, and returned by it. 
+        var totalPos = the total amount of positive integers from the input array arrayOfInput. it is printed to the screen.
+        var totalNegs = the total amount of positive integers from the input array arrayOfInput. it is printed to the screen. 
+        */
+
+        // this function finds out if a passed-in number is positive or negative by comparing it to 0
+        // it takes a number as a parameter and outputs a boolean-- whether the number is positive or not.
+        function isPositive(num) {
+
+            // return if num is greater than 0
+            return num > 0;
+        }
+
+        // this is just for my own ease of access
+        // this function prints a passed-in message. it returns nothing, just performs an action.
+        function print(message) {
+
+            // print the message that was passed in
+            document.write(message);
+        }
+
+        // this function asks the user for an integer value and then asks if the user would like to continue adding numbers. 
+        // it returns the array of all the inputted values (except zeroes).
+        // it excludes 0s-- if it gets a 0 as input, it does not add (push) it to the array of input. 
+        // it takes no input, but it returns an array-- the array of input entered by the user. 
+        function getArrayInput() {
+            
+            // initialise the arrayOfInput but don't fill it with anything yet
+            var arrayOfInput = [];
+
+            // begin the do-while loop
+            do {
+
+                // ask for input and parseInt it
+                var input = parseInt(prompt("Please enter an integer value."));
+
+                // if the input is not 0,
+                if (input != 0) {
+
+                    // add it to the list!
+                    arrayOfInput.push(input);
+                }
+
+                // ask the user if they want to keep going
+                var keepGoing = confirm('Select: \n OK to enter another number, \n Cancel to see the results.');
+
+            // do all this while the user wants to keep going
+            } while (keepGoing)
+
+            // when the user doesn't want to keep adding numbers anymore, return the finished array.
+            return arrayOfInput;
+
+        }
+
+
+        // this function gets the positive numbers from a passed-in array.
+        // it takes an array as a parameter and returns an array of all the positive numbers in the passed-in array.
+        function getPos(array) {
+
+            // initialise the positive number array but don't fill it with anything yet
+            var pos = [];
+
+            // while the counter is less than the array length,
+            // counter is 0 at first; while the counter is less than the array length; add 1 to the counter each time you go through
+            for (var i = 0; i < array.length; i++) {
+
+                // if the array value of index counter is positive,
+                if (isPositive(array[i])) {
+
+                    // add it to the list!
+                    pos.push(array[i]);
+                }
+            }
+
+            // after it's all done, return the positive number array.
+            return pos;
+        }
+
+        // this function gets the negative numbers from a passed-in array.
+        // this function takes an array as a parameter and returns an array of all the negative numbers in the passed-in array.
+        function getNegs(array) {
+
+            // initialise the negative number array but don't fill it with anything yet
+            var negs = [];
+
+            // while the counter is less than the array length,
+            // counter is 0 at first; while the counter is less than the array length; add 1 to the counter each time you go through
+            for (var i = 0; i < array.length; i++) {
+
+                // if the array value of index counter is NOT positive,
+                if (!isPositive(array[i])) {
+
+                    // add it to the list!
+                    negs.push(array[i]);
+                }
+            }
+
+            // after it's all done, return the negative number array.
+            return negs;
+        }
+
+
+        // this function gets the total amount of an array by adding up all the values. 
+        // this function takes an array as a parameter and returns the value of all the elements of the array added together. 
+        function getTotal(array) {
+
+            // define the total and set it equal to 0 at first.
+            var total = 0;
+
+            // while the counter is less than the array length,
+            // counter is 0 at first; while the counter is less than the array length; add 1 to the counter each time you go through
+            for (var i = 0; i < array.length; i++) {
+
+                // keep a running counter-- the total!
+                // total is equal to the previous total plus the new amount
+                total += array[i];
+            }
+
+            // after it's all done, return the total.   
+            return total;
+        }
+
+
+        // this function formats the output of an array so it's spaced out properly
+        // it doesn't return anything, just performs an action
+        // this function takes an array as a parameter and returns nothing. 
+        function formattedArrayOutput(array) {
+
+            // if the array length is greater than 0 (if the user entered any numbers)
+            if (array.length > 0) {
+
+                // print the first item in the array
+                print(array[0]);
+            }
+            
+
+            // while the counter is less than the array length,
+            // counter is 1 at first; while the counter is less than the array length; add 1 to the counter each time you go through
+            for (var i = 1; i < array.length; i++) {
+
+                // print a comma and a space, then the next array item!
+                // this way, the array won't end in a comma
+                print(", " + array[i]);
+            } 
+        }
+
+
+
+    </script>
+</head>
+
+<body>
+    <h1> Series of Integers </h1>
+    <script>
+        // Step 1: Get input and format into an array
+        var arrayOfInput = getArrayInput();
+
+        // Step 2: Get the positive and negative integers from the input array
+        var pos = getPos(arrayOfInput);
+        var negs = getNegs(arrayOfInput);
+
+        // Step 3: Find the total amount of positives and negatives from their respective arrays
+        var totalPos = getTotal(pos);
+        var totalNegs = getTotal(negs);
+
+        // Step 4: Output the negative integers in a formatted way
+        // You entered the following negative integers: xx, xx, xx
+        // The sum of all the negative integers is: xx
+        print("You entered the following negative integers: ");
+        formattedArrayOutput(negs);
+        print("<br>" + "The sum of all the negative integers is: " + totalNegs + "<br>");
+
+        // Step 5: Output the positive integers in a formatted way
+        // You entered the following positive integers: xx, xx, xx
+        // The sum of all the positive integers is: xx
+        print("You entered the following positive integers: ");
+        formattedArrayOutput(pos);
+        print("<br>" + "The sum of all the positive integers is: " + totalPos);
+
+
+
+    </script>
+</body>
+
+</html>

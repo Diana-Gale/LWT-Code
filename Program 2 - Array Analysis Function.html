@@ -1,0 +1,75 @@
+<html>
+<!-- 
+        Name: Diana Gale
+        Date: December 6 2020
+        Assignment: Assignment 8, program 2
+        Description: This program takes a number and searches an array for the number of occurences. It then prints the number of occurences, the array it searched
+        through, and the number to search for to the screen in a formatted manner. 
+    -->
+
+<head>
+    <title> Array Analysis Function </title>
+    <script>    
+        /* Algorithm
+        1. Initialise our array and fill it with values
+        2. Count the number of occurences of that number in the array!
+        3. Write the information to the document in a formatted manner
+        */
+
+        /* Variable Index (purposes of all the variables)
+        var occurences = the counter for the number of occurences in the function countOccurences. it is returned by the function. it is used as a counter. it is
+            also printed to the screen later in the program.
+        var nums = the array of numbers that we look through in order to find the number of occurences of a specific number. it is inputted to countOccurences
+            as an argument, so we can look through it.
+        var num = the parameter that signifies the number to search for in the array entered to the function countOccurences. 
+        var numArray = the parameter that signifies the array to search through in the function countOccurences. it is used in the for loop in the function. 
+        var searchNum = the number to search for, that is entered into the function countOccurences. 
+        */
+
+
+        // this function counts the occurences of a passed-in number (num) in a passed-in array of numbers (numArray). it returns the number of occurences.
+        // this function takes an array and a number as a parameter and returns the number of occurences of that number in the passed-in array. 
+        function countOccurences(numArray, num) {
+
+            // initialise our occurence counter and set it to zero
+            var occurences = 0;
+
+            // while the counter is less than the array length,
+            // counter is 0 at first; while the counter is less than the array length; add 1 to the counter each time you go through
+            for (var i = 0; i < numArray.length; i++) {
+
+                // if the number in the array is the same as the number we're looking for,
+                if (numArray[i] == num) {
+
+                    // add one to the counter!
+                    occurences++;
+                }
+            }
+
+            // after everything's done, return the number of occurences.
+            return occurences;
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1> Array Analysis Function </h1>
+    <script>
+        
+        // Step 1: Initialise our array and fill it with values, and identify the number to search for
+        // I used your example as a guide-- these are not your exact numbers, but they follow the criteria you outlined. 
+        var nums = [1, 3, 4, 1, 3, 7, 5, 2, 1];
+        var searchNum = 1;
+
+        // Step 2: Count the number of occurences of that number in the array!
+        var occurences = countOccurences(nums, searchNum);
+
+        // Step 3: Write the information to the document in a formatted manner
+        // The number of occurences of 1 in [1,3,4,1,3,7,5,2,1] is 3
+        document.write("The number of occurences of " + searchNum + " in [" + nums.toString() + "] is " + occurences);
+        
+    </script>
+</body>
+
+</html>
